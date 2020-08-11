@@ -26,8 +26,8 @@ bool initialize_window(void) {
         SDL_WINDOWPOS_CENTERED,
         window_width,
         window_height,
-        //SDL_WINDOW_BORDERLESS
-        SDL_WINDOW_MINIMIZED
+        SDL_WINDOW_BORDERLESS
+        //SDL_WINDOW_MINIMIZED
     );
     if (!window) {
         fprintf(stderr, "Error creating SDL window.\n");
