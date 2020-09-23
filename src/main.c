@@ -45,9 +45,7 @@ void process_input(void) {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
 // Function that receives a 3D vector and returns a projected 2D point
-////////////////////////////////////////////////////////////////////////////////
 vec2_t project(vec3_t point) {
     vec2_t projected_point = {
         .x = (fov_factor * point.x) / point.z,
