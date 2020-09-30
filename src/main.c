@@ -5,7 +5,7 @@
 #include "display.h"
 #include "vector.h"
 #include "mesh.h"
-#include "array.h"
+#include "./core/array.h"
 
 triangle_t* triangles_to_render = NULL;
 
@@ -29,7 +29,9 @@ void setup(void) {
         window_height
     );
 
-	load_cube_mesh_data();
+	
+	//load_cube_mesh_data();
+	load_obj_file_data("./assets/cube.obj");
 }
 
 void process_input(void) {

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "array.h"
+#include "./core/array.h"
 #include "mesh.h"
 
 mesh_t mesh = {
@@ -50,4 +50,8 @@ void load_cube_mesh_data(void){
 		face_t cube_face = cube_faces[i];
 		array_push(mesh.faces, cube_face);
 	}
+}
+
+void load_obj_file_data(char *filename){
+	
 }
