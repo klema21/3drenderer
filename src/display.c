@@ -56,7 +56,7 @@ void draw_pixel(int x, int y, uint32_t color) {
         color_buffer[(window_width * y) + x] = color;
     }
 }
-
+/*
 void draw_line(int x0, int y0, int x1, int y1, uint32_t color) {
     int delta_x = (x1 - x0);
     int delta_y = (y1 - y0);
@@ -72,7 +72,36 @@ void draw_line(int x0, int y0, int x1, int y1, uint32_t color) {
         draw_pixel(round(current_x), round(current_y), color);
         current_x += x_inc;
         current_y += y_inc;
-    }
+	}
+}*/
+
+
+void draw_line(int x0, int y0, int x1, int y1, uint32_t color) {
+	int dx, dy, p, x, y;
+ 
+	dx=x1-x0;
+	dy=y1-y0;
+ 
+	x=x0;
+	y=y0;
+ 
+	p=2*dy-dx;
+ 
+	while(x<x1)
+	{
+		if(p>=0)
+		{
+			draw_pixel(x,y,color);
+			y=y+1;
+			p=p+2*dy-2*dx;
+		}
+		else
+		{
+			draw_pixel(x,y,color);
+			p=p+2*dy;
+		}
+		x=x+1;
+	}	
 }
 
 void draw_triangle(int x0, int y0, int x1, int y1, int x2, int y2, uint32_t color) {
