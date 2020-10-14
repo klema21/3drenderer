@@ -15,6 +15,7 @@ extern SDL_Texture* color_buffer_texture;
 extern int window_width;
 extern int window_height;
 
+void swap(int *x, int *y);
 bool initialize_window(void); 
 void draw_grid(void);
 void draw_pixel(int x, int y, uint32_t color);

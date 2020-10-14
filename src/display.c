@@ -7,6 +7,12 @@ SDL_Texture* color_buffer_texture = NULL;
 int window_width = 800;
 int window_height = 600;
 
+void swap(int *x, int *y){
+	int tmp = *x;
+	*x = *y;
+	*y = tmp;
+}
+
 bool initialize_window(void) {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         fprintf(stderr, "Error initializing SDL.\n");
@@ -78,7 +84,31 @@ void draw_pixel(int x, int y, uint32_t color) {
 void draw_line(int x0, int y0, int x1, int y1, uint32_t color) {
 	bool steep = false;
 	if(abs(x0-x1)<abs(y0-y1)){
-		
+		swap(&x0, &y0);
+		swap(&x1, &y1);
+		steep = true;
+	}
+
+	if(x0>x1){
+		swap(&x0, &x1);
+		swap(&y0, &y1);
+	}
+	int dx = x1-x0;
+	int dy = y1-y0;
+	int derror2 = abs(dy)*2;
+	int error2 = 0;
+	int y = y0;
+	for(int x=x0; x<x1; x++){
+		if(steep)
+			draw_pixel(y, x, color);
+		else
+			draw_pixel(x, y, color);
+		error2 += derror2;
+
+		if(error2 > dx){
+			y += (y1>y0?1:-1);
+			error2 -= dx*2;
+		}
 	}
 }
 
